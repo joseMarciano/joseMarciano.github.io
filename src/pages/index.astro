@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Stack from '../components/Stack.astro';
+import Experience from '../components/Experience.astro';
+import Articles from '../components/Articles.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Nav />
+  <main id="main">
+    <Hero />
+    <div class="container">
+      <About />
+      <Stack />
+      <Experience />
+      <Articles />
+      <Contact />
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  @media (max-width: 680px) {
+    .container {
+      padding: 0 20px;
+    }
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import { about } from '../data/site';
+---
+
+<section id="about" class="section">
+  <div class="section-wrapper">
+    <div class="section-header">
+      <span class="section-label">About</span>
+      <h2 class="section-title">Background</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="about-bio">{about.bio}</p>
+  </div>
+</section>
+
+<style>
+  .about-bio {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    max-width: 760px;
+  }
+</style>

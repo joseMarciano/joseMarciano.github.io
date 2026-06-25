@@ -1,0 +1,61 @@
+---
+import { profile } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="footer-inner">
+    <span class="copyright">© {year} {profile.name}</span>
+    <span class="built-with">Built with Astro · GitHub Pages</span>
+    <div class="footer-links">
+      <a href={profile.links.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={`mailto:${profile.email}`}>Email</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 100px;
+  }
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 28px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    font-size: 0.8rem;
+    color: var(--text-subtle);
+  }
+  .built-with {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 18px;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+    transition: color 0.15s;
+  }
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 560px) {
+    .footer-inner {
+      padding: 24px 20px;
+    }
+    .built-with {
+      order: 3;
+      width: 100%;
+    }
+  }
+</style>

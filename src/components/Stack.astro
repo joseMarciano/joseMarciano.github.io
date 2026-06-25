@@ -1,0 +1,91 @@
+---
+import { stack } from '../data/site';
+---
+
+<section id="stack" class="section">
+  <div class="section-wrapper">
+    <div class="section-header">
+      <span class="section-label">Stack</span>
+      <h2 class="section-title">Tools I reach for</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="stack-groups">
+      {
+        stack.map((g) => (
+          <div class="stack-row">
+            <span class="stack-group">{g.group}</span>
+            <ul class="stack-items">
+              {g.items.map((it) => (
+                <li>{it}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack-groups {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stack-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stack-row:first-child {
+    padding-top: 0;
+  }
+  .stack-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .stack-group {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-subtle);
+    letter-spacing: 0.02em;
+  }
+
+  .stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .stack-items li {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--bg-card);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .stack-items li:hover {
+    color: var(--accent);
+    border-color: var(--accent-border);
+  }
+
+  @media (max-width: 560px) {
+    .stack-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .stack-group {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+  }
+</style>

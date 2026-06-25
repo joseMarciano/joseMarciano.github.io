@@ -1,0 +1,27 @@
+name: Fetch Articles
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1' # Every Monday at 06:00 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch and merge articles
+        run: python3 fetch_articles.py
+
+      - name: Commit articles.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/articles.json
+          git diff --cached --quiet || git commit -m "chore: update articles.json [skip ci]"
+          git push
