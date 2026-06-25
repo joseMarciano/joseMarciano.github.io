@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [*]
   workflow_dispatch:
 
 permissions:
@@ -25,7 +25,17 @@ jobs:
           node-version: 22
           cache: npm
 
-      - run: npm install
+      - name: Install dependencies
+        run: npm install --loglevel verbose --foreground-scripts --no-fund --no-audit
+
+      - name: Show npm debug log on failure
+        if: failure()
+        run: |
+          echo "===== npm debug logs ====="
+          for f in ~/.npm/_logs/*-debug-0.log; do
+            echo "----- $f -----"
+            cat "$f"
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
